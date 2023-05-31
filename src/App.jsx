@@ -7,9 +7,19 @@ import Buttons from "./components/Buttons";
 import Alert from "./components/Alert";
 import Badges from "./components/Badges";
 import Card from "./components/Card";
+import { useState } from "react";
+import Modals from "./components/Modals";
 
 
 function App() {
+  const [show, SetShow] = useState(false);
+  const [onClose, SetOnClose] = useState(false);
+
+  function showModal() {
+    SetShow(true);
+    SetOnClose(false);
+  }
+
   return (
     <div className='space-y-6 w-full text-center'>
       <h1 className='text-3xl font-bold '>Component Library Tailwind</h1>
@@ -47,25 +57,42 @@ function App() {
           </Badges>
         </div>
         <div>
-        <h2>Cards</h2>
-        <div className=" flex justify-center">
-          <Card
-          
-            imgAlt='Meaningful alt text for an image that is not purely decorative'
-            imgSrc='https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80'
-            link = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'
-          >
-            
-            <h5 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white my-4'>
-              <p>Noteworthy technology acquisitions 2021</p>
-            </h5>
-            <p className='font-normal text-gray-700 dark:text-gray-400'>
-              
+          <h2>Cards</h2>
+          <div className=' flex justify-center'>
+            <Card
+              imgAlt='Meaningful alt text for an image that is not purely decorative'
+              imgSrc='https://images.unsplash.com/photo-1495020689067-958852a7765e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1738&q=80'
+              link='https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley'
+            >
+              <h5 className='text-2xl font-bold tracking-tight text-gray-900 dark:text-white my-4'>
+                <p>Noteworthy technology acquisitions 2021</p>
+              </h5>
+              <p className='font-normal text-gray-700 dark:text-gray-400'>
                 Here are the biggest enterprise technology acquisitions of 2021
                 so far, in reverse chronological order.
-              
-            </p>
-          </Card>
+              </p>
+            </Card>
+          </div>
+          <div>
+            <h2>Modal</h2>
+            <div>
+              <Modals
+                show={show}
+                SetShow={SetShow}
+                size='text-lg'
+                onClose={onClose}
+                SetOnClose={SetOnClose}
+              />
+                
+            </div>
+            <div>
+              <button
+                className=' p-2 bg-blue-500 rounded-2xl'
+                onClick={showModal}
+              >
+                Show?
+              </button>
+            </div>
           </div>
         </div>
       </div>
